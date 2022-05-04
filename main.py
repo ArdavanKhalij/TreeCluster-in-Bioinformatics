@@ -11,6 +11,18 @@ Leaves = []
 FILE = open("99_otus_unannotated.tree", "r")
 TreeNewickString = str(FILE.read())
 Tree = Tree(TreeNewickString)
+print(len(Tree.get_leaves()))
+
+
+def μ(Tree):
+    Sum = 0
+    Nodes = Tree.search_nodes()
+    N = len(Nodes)
+    for i in range(0, N):
+        for j in range(0, N):
+            if i != j:
+                Sum = Sum + Tree.get_distance(Nodes[i], Nodes[j], topology_only=True)
+    return Sum
 
 
 def Max_diameter_min_cut_partitioning(Tree):
@@ -35,9 +47,10 @@ def Max_diameter_min_cut_partitioning(Tree):
         else:
             BU = max([BL + WL, BR + WR])
         Leaves.append(Tree.get_leaves())
-        print("##################### "+ str(PARTS) +" #####################")
+        print("##################### ", PARTS, BU, " #####################")
 
 
 Max_diameter_min_cut_partitioning(Tree)
 print("##################### Result #####################")
 print(PARTS)
+print(len(Leaves))
