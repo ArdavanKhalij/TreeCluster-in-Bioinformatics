@@ -1,4 +1,5 @@
 from ete3 import Tree
+import time
 
 
 THRESHOLD = 0.15
@@ -90,8 +91,9 @@ def Max_diameter_min_cut_partitioning(Tree):
         Leaves.append(Tree.get_leaves())
         # print("##################### ", PARTS, BU, " #####################")
 
-
+start = time.time()
 Max_diameter_min_cut_partitioning(Tree)
+end = time.time()
 print("##################### Result #####################")
 print(PARTS)
 print(len(Leaves))
@@ -99,7 +101,9 @@ print("------------------------------------------")
 print(ClusterDiversity)
 print("------------------------------------------")
 print(sum(ClusterDiversity))
-print(sum(ClusterDiversity)/len(ClusterDiversity))
+print("Result for the plot:", sum(ClusterDiversity)/len(ClusterDiversity))
+time_of_running = end-start
+print("Time of running:", time_of_running)
 
 # Results
 # For Deepika to run
