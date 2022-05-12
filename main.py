@@ -94,6 +94,7 @@ print("Time of running:", time_of_running)
 
 # Results
 # For Deepika to run (please report result, number of clusters and time for each)
+# Report in this format: result     time    Number of clusters
 # 0.005 :
 # 0.010 :
 # 0.015 :
