@@ -96,17 +96,17 @@ Max_diameter_min_cut_partitioning(Tree)
 end = time.time()
 print("##################### Result #####################")
 print(PARTS)
-print(len(Leaves))
 print("------------------------------------------")
 print(ClusterDiversity)
 print("------------------------------------------")
 print(sum(ClusterDiversity))
+print("Number of clusters", PARTS)
 print("Result for the plot:", sum(ClusterDiversity)/len(ClusterDiversity))
 time_of_running = end-start
 print("Time of running:", time_of_running)
 
 # Results
-# For Deepika to run (please report result and time for each)
+# For Deepika to run (please report result, number of clusters and time for each)
 # 0.005 :
 # 0.010 :
 # 0.015 :
