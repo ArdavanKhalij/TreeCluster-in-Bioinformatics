@@ -106,7 +106,7 @@ time_of_running = end-start
 print("Time of running:", time_of_running)
 
 # Results
-# For Deepika to run
+# For Deepika to run (please report result and time for each)
 # 0.005 :
 # 0.010 :
 # 0.015 :
