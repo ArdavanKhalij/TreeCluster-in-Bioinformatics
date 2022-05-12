@@ -35,7 +35,6 @@ def μ_tree_distance(Tree):
     print("Before", k)
     for i in NodesForDetach2:
         if i in Nodes:
-            # print("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||")
             Nodes.remove(i)
     N = len(Nodes)
     if N <= 1:
@@ -56,14 +55,8 @@ def Max_diameter_min_cut_partitioning(Tree):
         BL = Tree.children[1].get_farthest_leaf()[1]
         WR = Tree.get_distance(Tree.children[0])
         WL = Tree.get_distance(Tree.children[1])
-        # print("BR:", BR, "BL:", BL, "WR:", WR, "WL:", WL, "BR + WR:", BR + WR, "BL + WL:", BL + WL)
         if (BR + WR + BL + WL) > THRESHOLD:
             if (BL + WL) <= (BR + WR):
-                # for i in NodesForDetach:
-                    # print(i)
-                    # D = Tree.search_nodes(name = i.name)[0]
-                    # D.detach()
-                # NodesForDetach.append(Tree.children[0])
                 Tree.children[0].detach()
                 NodesForDetach.append(Tree.children[0])
                 ClusterDiversity.append(μ_tree_distance(Tree))
@@ -72,11 +65,6 @@ def Max_diameter_min_cut_partitioning(Tree):
                 PARTS = PARTS + 1
                 print(PARTS)
             else:
-                # for i in NodesForDetach:
-                    # print(i)
-                    # D = Tree.search_nodes(name=i.name)[0]
-                    # D.detach()
-                # NodesForDetach.append(Tree.children[1])
                 Tree.children[1].detach()
                 try:
                     NodesForDetach.append(Tree.children[1])
@@ -89,7 +77,6 @@ def Max_diameter_min_cut_partitioning(Tree):
         else:
             BU = max([BL + WL, BR + WR])
         Leaves.append(Tree.get_leaves())
-        # print("##################### ", PARTS, BU, " #####################")
 
 start = time.time()
 Max_diameter_min_cut_partitioning(Tree)
