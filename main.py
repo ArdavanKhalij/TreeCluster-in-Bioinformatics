@@ -2,7 +2,7 @@ from ete3 import Tree
 import time
 
 
-THRESHOLD = 0.10
+THRESHOLD = 0.80
 global PARTS
 PARTS = 1
 global Leaves
@@ -178,30 +178,15 @@ print("Time of running:", time_of_running)
 #
 #
 
-# 0.085 :
-#
-#
-#
-
 # 0.090 :
 #
 #
 #
 
-# 0.095 :
-#
-#
-#
-
 # 0.100 :
-#
-#
-#
-
-# 0.105 :
-#
-#
-#
+#   0.0386100788506496
+#   20247.943447113037
+#   20256
 
 # 0.110 :
 #   0.05058216984000356
