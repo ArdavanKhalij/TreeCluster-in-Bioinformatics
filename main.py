@@ -23,6 +23,7 @@ print(len(Tree.get_leaves()))
 
 def μ_tree_distance(Tree):
     Nodes = Tree.get_leaves()
+    # First optimization
     k = len(Nodes)
     if k <= 1:
         return 0
@@ -39,6 +40,7 @@ def μ_tree_distance(Tree):
         if i in Nodes:
             Nodes.remove(i)
     N = len(Nodes)
+    # Second optimization
     if N <= 1:
         return 0
     print(k - N)
@@ -61,6 +63,7 @@ def Max_diameter_min_cut_partitioning(Tree):
         if (BR + WR + BL + WL) > THRESHOLD:
             if (BL + WL) <= (BR + WR):
                 Tree.children[0].detach()
+                # The main optimization
                 NodesForDetach = Tree.children[0]
                 ClusterDiversity.append(μ_tree_distance(Tree))
                 BU = BL + WL
@@ -70,6 +73,7 @@ def Max_diameter_min_cut_partitioning(Tree):
             else:
                 Tree.children[1].detach()
                 try:
+                    # The main optimization
                     NodesForDetach = Tree.children[1]
                 except:
                     pass
