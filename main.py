@@ -24,14 +24,18 @@ TreeNewickString = str(FILE.read())
 # Have the root node in Tree
 Tree = Tree(TreeNewickString)
 
-
+# Calculating the μ for each cluster for having the final result at the end of the program
 def μ_tree_distance(Tree):
+    # Nodes that the input node has
     Nodes = Tree.get_leaves()
     # First optimization
+    # Just checking if the node has 1 or less child then the result is simply 0 so we dont
+    # need to go through the function
     k = len(Nodes)
     if k <= 1:
         return 0
     Sum = 0
+    # Saving the detached nodes and their children (append) for checking
     global NodesForDetach2
     for i in NodesForDetach:
         NodesForDetach2.append(i)
@@ -40,15 +44,19 @@ def μ_tree_distance(Tree):
     print("--------------------------")
     print(len(NodesForDetach2))
     print("Before", k)
+    # Removing the nodes that were saved as detached
     for i in NodesForDetach2:
         if i in Nodes:
             Nodes.remove(i)
     N = len(Nodes)
+    # Checking the number of leafs again so if it is 1 or less we dont bother to check the
+    # number and just return 0
     # Second optimization
     if N <= 1:
         return 0
     print(k - N)
     print("after", N)
+    # Calculate the formula in paper
     for i in range(0, N):
         for j in range(i + 1, N):
             Sum = Sum + Nodes[i].get_distance(Nodes[j])/len(Nodes)
@@ -122,6 +130,8 @@ print(ClusterDiversity)
 print("------------------------------------------")
 print(sum(ClusterDiversity))
 print("Number of clusters", PARTS)
+# We nud to sum up the ClusterDiversity array and div it on number of clusters based on the 
+# formula in paper
 print("Result for the plot:", sum(ClusterDiversity)/len(ClusterDiversity))
 time_of_running = end-start
 print("Time of running:", time_of_running)
