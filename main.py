@@ -3,19 +3,19 @@ from ete3 import Tree
 # Adding the time library for checking the time complexity
 import time
 
-# THRESHOLD is the threshold mentioned in the paper
-THRESHOLD = 0.105
-# This is a variable for counting the number of clusters
+# THRESHOLD is a global variable and the threshold mentioned in the paper
+THRESHOLD = 0.15
+# PARTS is a global variable for counting the number of clusters
 global PARTS
 PARTS = 1
-global Leaves
-Leaves = []
+# ClusterDiversity is a global variable for calculating μ
 ClusterDiversity = []
+# NodesForDetach is a global variable that is used for saving the detached node for each step
 global NodesForDetach
 NodesForDetach = []
+# NodesForDetach2 is a global variable that is used for saving all the detached nodes
 global NodesForDetach2
 NodesForDetach2 = []
-
 
 FILE = open("99_otus_unannotated.tree", "r")
 TreeNewickString = str(FILE.read())
