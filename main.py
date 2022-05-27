@@ -1,8 +1,11 @@
+# Adding the ete3 library for working with the newick format tree
 from ete3 import Tree
+# Adding the time library for checking the time complexity
 import time
 
-
+# THRESHOLD is the threshold mentioned in the paper
 THRESHOLD = 0.105
+# This is a variable for counting the number of clusters
 global PARTS
 PARTS = 1
 global Leaves
