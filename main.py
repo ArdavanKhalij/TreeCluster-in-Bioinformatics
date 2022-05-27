@@ -54,27 +54,44 @@ def μ_tree_distance(Tree):
             Sum = Sum + Nodes[i].get_distance(Nodes[j])/len(Nodes)
     return Sum
 
-
+# This is the main function in our program that is an implementation of max diameter min cut partitioning
 def Max_diameter_min_cut_partitioning(Tree):
+    # Using the global NodesForDetach
     global NodesForDetach
+    # Checking if the node that we are in it is not a leaf
     if not Tree.is_leaf():
+        # Recall the function for the recursion for the right child and left child
         Max_diameter_min_cut_partitioning(Tree.children[0])
         Max_diameter_min_cut_partitioning(Tree.children[1])
+        # BR is the distance of the right child of the node to the farthest leaf
         BR = Tree.children[0].get_farthest_leaf()[1]
+        # BL is the distance of the left child of the node to the farthest leaf
         BL = Tree.children[1].get_farthest_leaf()[1]
+        # WR is the distance of the node to its own right child
         WR = Tree.get_distance(Tree.children[0])
+        # WL is the distance of the node to its own right child
         WL = Tree.get_distance(Tree.children[1])
+        # The condition in the paper
         if (BR + WR + BL + WL) > THRESHOLD:
+            # The condition in the paper
             if (BL + WL) <= (BR + WR):
+                # This is just for clarification and because the algorithm is recursive it doesnt do anything
                 Tree.children[0].detach()
                 # The main optimization
+                # Here is the actual place that we save the detach node and then use it in μ_tree_distance for 
+                # calculating Cluster Diversity that is mentiond in the paper as μ
                 NodesForDetach = Tree.children[0]
+                # Saving the Cluster Diversity for one cluster for calculating the final μ at the end
                 ClusterDiversity.append(μ_tree_distance(Tree))
+                # This is also extra because with our approach we dont need BU anymore to make the tree ready 
+                # for the next step
                 BU = BL + WL
+                # Adding one to PARTS for detecting a new cluster
                 global PARTS
                 PARTS = PARTS + 1
-                print(PARTS)
+            # The condition in the paper
             else:
+                # Same as the is statement
                 Tree.children[1].detach()
                 try:
                     # The main optimization
@@ -85,13 +102,19 @@ def Max_diameter_min_cut_partitioning(Tree):
                 BU = BR + WR
                 PARTS = PARTS + 1
                 print(PARTS)
+        # The condition in the paper
         else:
+            # Detecting no Cluster and doing nothing
             BU = max([BL + WL, BR + WR])
         Leaves.append(Tree.get_leaves())
 
+# Calculating the running time
 start = time.time()
+# Calling the algorithm in the function
 Max_diameter_min_cut_partitioning(Tree)
 end = time.time()
+
+# Display the result
 print("##################### Result #####################")
 print(PARTS)
 print("------------------------------------------")
