@@ -17,11 +17,12 @@ NodesForDetach = []
 global NodesForDetach2
 NodesForDetach2 = []
 
+# Opening the file of the tree
 FILE = open("99_otus_unannotated.tree", "r")
+# Read from the file
 TreeNewickString = str(FILE.read())
+# Have the root node in Tree
 Tree = Tree(TreeNewickString)
-Tree.delete()
-print(len(Tree.get_leaves()))
 
 
 def μ_tree_distance(Tree):
